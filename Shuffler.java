@@ -56,19 +56,24 @@ public class Shuffler {
      * @param values is an array of integers simulating cards to be shuffled.
      */ 
     public static void perfectShuffle(int[] values) {
-        int[] shuffled = new int[values.length];
-
-        int k = 0;
-        for(int j = 0; j < (values.length + 1) / 2; j++) {
-            shuffled[k] = values[j];
-            k += 2;
-        }
-        
-        k = 1;
-        for(int j = (values.length + 1) / 2; j < values.length; j++) {
-            shuffled[k] = values[j];
-            k += 2;
-        }
+    	int[] shuffled = new int[values.length];
+		for (int i = 0; i < values.length; i++) {
+			shuffled[i] = values[i];
+		}
+		
+		int k = 0;
+		
+		for (int index = 0; index < ((values.length + 1) / 2); index++) {
+			values[k] = shuffled[index];
+			k += 2;
+		}
+		
+		k = 1;
+		
+		for (int index = ((values.length + 1) / 2); index < values.length; index++) {
+			values[k] = shuffled[index];
+			k += 2;
+		}
     }
 
     /**
@@ -83,6 +88,14 @@ public class Shuffler {
      * @param values is an array of integers simulating cards to be shuffled.
      */
     public static void selectionShuffle(int[] values) {
-        /* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-    }
+    	int copy = 0;
+		int random = 0;
+
+		for (int index = values.length - 1; index > 0; index--) {
+			random = (int) (Math.random() * values.length);			
+			copy = values[index];
+			values[index] = values[random];
+			values[random] = copy;
+		}
+	}
 }
